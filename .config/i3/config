@@ -152,8 +152,6 @@ bar {
         status_command i3status
 }
 
-
-
 	
 #volume keys
 bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 5%+
@@ -216,3 +214,21 @@ mode "outer" {
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
 }
+
+bindsym $mod+b mode "brightness"
+
+mode "brightness" {
+	bindsym 1 exec xrandr --output eDP-1 --brightness 0.1
+	bindsym 2 exec xrandr --output eDP-1 --brightness 0.2
+	bindsym 3 exec xrandr --output eDP-1 --brightness 0.3
+	bindsym 4 exec xrandr --output eDP-1 --brightness 0.4
+	bindsym 5 exec xrandr --output eDP-1 --brightness 0.5
+	bindsym 6 exec xrandr --output eDP-1 --brightness 0.6
+	bindsym 7 exec xrandr --output eDP-1 --brightness 0.7
+	bindsym 8 exec xrandr --output eDP-1 --brightness 0.8
+	bindsym 9 exec xrandr --output eDP-1 --brightness 0.9
+	bindsym 0 exec xrandr --output eDP-1 --brightness 1.0
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+
+} 

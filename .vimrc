@@ -22,22 +22,31 @@ call plug#end()
 	syntax on 
 	color codedark 
 
+	"turn spellcheck on
+	set spell	
+	"remapping esc to jj in insert mode
+	inoremap jj <Esc>
 
 "autocmd stuff
 	filetype plugin on
 	set nocompatible
-noremap <Up> <Nop>
-noremap <Down> <Nop>
-noremap <Left> <Nop>
-noremap <Right> <Nop>
 
-"setting tabs to 4
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set noexpandtab
 
-"map for nerdtree"
+	"making the arrow keys pointless"
+	noremap <Up> <Nop>
+	noremap <Down> <Nop>
+	noremap <Left> <Nop>
+	noremap <Right> <Nop>
+
+	"setting tabs to 4
+	set tabstop=4
+	set softtabstop=4
+	set shiftwidth=4
+	set noexpandtab
+
+	"soft line wrop"
+	set linebreak
+	"map for nerdtree
 map <C-n> :NERDTreeToggle<CR>
 
 " TagList options                                                                                                                        
@@ -60,17 +69,18 @@ set statusline=[%n]\ %<%f\ %([%1*%M%*%R%Y]%)\ \ \ [%{Tlist_Get_Tagname_By_Line()
 "random editing commands"
 "for going to end of line while in edit
 autocmd FileType * inoremap ;e <Esc>A
+autocmd FileType * inoremap ,d <Esc>:filetype detect<Enter>
 autocmd FileType * inoremap ;r <Esc>:source ~/.vimrc <Enter>i
 ""autocmd snippets for writting commands hahah
 autocmd FileType vim inoremap ,lt autocmd FileType tex inoremap ,<Esc>a
 autocmd FileType vim inoremap ,ct autocmd FileType c inoremap ,<Esc>a
-
+autocmd FileType vim inoremap ,ht autocmd FileType html inoremap ,<Esc>a
 
 "compile while editing tex file"
-autocmd FileType tex inoremap ,c <Esc>:w<Enter> :!pdflatex %<Enter><Enter>i
+autocmd FileType tex inoremap ,c <Esc>:w<Enter> :!pdflatex %  <Enter>i
 "Latex snippets"
 autocmd FileType plaintex inoremap ,bd \documentclass{article}<Enter>\author{Daniel Schaffel}<Enter>\title{}<Enter>\begin{document}<Enter>\maketitle<Enter><Enter>\end{document}<Esc>4kf}i
-autocmd FileType plaintex inoremap ,d <Esc>:filetype detect<Enter>
+
 autocmd FileType tex inoremap ,up \usepackage{}<Esc>F}i
 autocmd FileType tex inoremap ,sec \section{}<Enter><Esc>zzi
 autocmd FileType tex inoremap ,ssec \subsection{}<Enter><Esc>zzi
@@ -88,3 +98,21 @@ autocmd FileType tex inoremap ,3m \begin{bmatrix}<Enter><Space>&<Space>&<Space>\
 
 "C macros"
 autocmd FileType c inoremap ,if int<Space><Space>{<Enter><Enter>return 0;<Enter>}<Esc>2kFta
+autocmd FileType c inoremap ;db  printf("\n");<Esc>F\i
+
+
+"html snippets
+autocmd FileType html inoremap ,bt <!doctype html><Enter><html><Enter><head><Enter><title></title><Enter></head><Enter><Enter><body><Enter><Enter></body><Enter></html>
+
+
+autocmd FileType html inoremap ,p <p></p><Esc>F<i
+
+
+"markdown snippets"
+autocmd FileType markdown inoremap ,i **<Esc>i
+autocmd FileType markdown inoremap ,b ****<Esc>hi
+
+"for changing the cursur to line in insert mode"
+:autocmd InsertEnter * set cul
+:autocmd InsertLeave * set nocul
+

@@ -119,6 +119,8 @@ fi
 #run neofetch when started
 neofetch
 
+#adding postman to path
+
 #adding gnat ada compiler to the path
 export PATH='/home/daniel/opt/GNAT/2018/bin':$PATH
 
@@ -130,6 +132,7 @@ export PATH=$PATH:/bin
 #adding usr/bin
 export PATH=$PATH:/usr/bin
 
+alias postman='cd ~/opt/PostmanCanary/; ./PostmanCanary &'
 #alias to hop to yu-git from anywhere
 alias yug='cd /home/daniel/Desktop/yu-git/'
 
@@ -142,9 +145,54 @@ alias linear='cd /home/daniel/Desktop/Linear'
 #jump to algs takes arg of which folder exactly i want to go to
 alias algs='cd /home/daniel/Desktop/yu-git/DesignAndAnalysis/assignments'
 
+#jump to os folder
+alias os='cd ~/Desktop/yu-git/OS'
+
+#jump to distributed stage 3
+alias stage3='cd ~/Desktop/yu-git/intro_to_distributed/stage3'
+
+#jump to Parallel assignments
+alias parallel='cd /home/daniel/Desktop/yu-git/ParallelProgramming/assignments'
 #adds files to the bare dotfiles repo
 alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
+
+#turn off keyboard
+alias keyboardoff='xinput disable "Microsoft Surface Keyboard Keyboard"'
+
+#turn on keyboard
+alias keyboardon='xinput enable "Microsoft Surface Keyboard Keyboard"'
+
+#turn off keyboard
+alias mouseoff='xinput disable "Microsoft Surface Keyboard Touchpad"'
+
+#turn on keyboard
+alias mouseon='xinput enable "Microsoft Surface Keyboard Touchpad"'
+
+alias naomi='echo "Naomi is the most amazing person I know "'
 #vi mode in the shell
 set -o vi
 
+#change default editor to vim
+export EDITOR='vim'
+export VISUAL='vim'
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+function countdown(){
+   date1=$((`date +%s` + $1));
+   while [ "$date1" -ge `date +%s` ]; do
+     echo -ne "$(date -u --date @$(($date1 - `date +%s`)) +%H:%M:%S)\r";
+     sleep 0.1
+   done
+   echo -e "\a"
+}
+function stopwatch(){
+  date1=`date +%s`;
+   while true; do
+    echo -ne "$(date -u --date @$((`date +%s` - $date1)) +%H:%M:%S)\r";
+    sleep 0.1
+   done
+}
+export LD_LIBRARY_PATH=/opt/mqm/java/lib64:/opt/mqm/lib64:$LD_LIBRARY_PATH
+
+export NVM_DIR="/home/daniel/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

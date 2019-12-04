@@ -50,7 +50,7 @@ smart_gaps on
 exec_always feh -Z --bg-scale /home/daniel/Pictures/beautifulsky.jpg
 
 #terminal opacity
-exec --no-startup-id compton --active-opacity .9
+#exec --no-startup-id compton --active-opacity .9
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -232,3 +232,25 @@ mode "brightness" {
 	bindsym Escape mode "default"
 
 } 
+
+exec --no-startup-id nm-applet --sm-disable
+
+# bindings to turn laptop mouse/keyboard on and off when using laptop just as monitor]
+bindsym $mod+m mode "monitor"
+
+mode "monitor" {
+	bindsym $mod+k+d exec xinput disable "Microsoft Surface Keyboard Keyboard"
+	bindsym $mod+k+u exec xinput enable "Microsoft Surface Keyboard Keyboard"
+	bindsym $mod+m+d exec xinput disable "Microsoft Surface Keyboard Touchpad"
+	bindsym $mod+m+u exec xinput enable "Microsoft Surface Keyboard Touchpad"
+ 	bindsym Return mode "default"
+	bindsym Escape mode "default"
+
+}
+
+bindsym $mod+c exec chromium-browser
+
+bindsym $mod+z exec zathura
+
+bindsym Print exec scrot '%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f ~/Pictures/'
+bindsym Control+Print exec gnome-screenshot -i
